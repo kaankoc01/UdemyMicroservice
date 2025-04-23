@@ -18,3 +18,15 @@ Accept: application/json
 ###
 
 ###
+POST {{baseAddress}}/api/courses
+Content-Type : application/json
+Accept : application/json
+{
+  "name": "New Course 3",
+  "description": "This is a new course",
+  "categoryId": "{{categoryId}}",
+  "price": 10,
+  "imageUrl": "https://example.com/image.jpg"
+}
+###
+

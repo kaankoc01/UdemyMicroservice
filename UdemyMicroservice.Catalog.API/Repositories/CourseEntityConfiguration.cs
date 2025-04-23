@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MongoDB.EntityFrameworkCore.Extensions;
 using UdemyMicroservice.Catalog.API.Features.Courses;
 
@@ -18,7 +17,7 @@ namespace UdemyMicroservice.Catalog.API.Repositories
             builder.Property(x => x.Created).HasElementName("created");
             builder.Property(x => x.UserId).HasElementName("userId");
             builder.Property(x => x.CategoryId).HasElementName("categoryId");
-            builder.Property(x => x.Picture).HasElementName("picture");
+            builder.Property(x => x.ImageUrl).HasElementName("imageurl").HasMaxLength(200);
             builder.Ignore(x => x.Category);
 
             builder.OwnsOne(c => c.Feature, feature =>

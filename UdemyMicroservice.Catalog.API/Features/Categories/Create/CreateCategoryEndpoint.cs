@@ -8,7 +8,11 @@ namespace UdemyMicroservice.Catalog.API.Features.Categories.Create
         {
             group.MapPost("/",
                 async (CreateCategoryCommand Command, IMediator mediator) => 
-                (await mediator.Send(Command)).ToGenericResult()).AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
+                (await mediator.Send(Command)).ToGenericResult())
+                .WithName("CreateCategory")
+                .Produces<Guid>(StatusCodes.Status201Created)
+
+                .AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
 
             return group;

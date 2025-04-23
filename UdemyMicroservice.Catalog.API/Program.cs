@@ -1,5 +1,6 @@
 using UdemyMicroservice.Catalog.API;
 using UdemyMicroservice.Catalog.API.Features.Categories;
+using UdemyMicroservice.Catalog.API.Features.Courses.Create;
 using UdemyMicroservice.Catalog.API.Options;
 using UdemyMicroservice.Catalog.API.Repositories;
 using UdemyMicroservice.Shared.Extensions;
@@ -16,6 +17,7 @@ builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 var app = builder.Build();
 
 app.AddCategoryGroupEndpointExt();
+app.AddCourseGroupEndpointExt();
 
 if (app.Environment.IsDevelopment())
 {
