@@ -1,6 +1,6 @@
 using UdemyMicroservice.Catalog.API;
 using UdemyMicroservice.Catalog.API.Features.Categories;
-using UdemyMicroservice.Catalog.API.Features.Courses.Create;
+using UdemyMicroservice.Catalog.API.Features.Courses;
 using UdemyMicroservice.Catalog.API.Options;
 using UdemyMicroservice.Catalog.API.Repositories;
 using UdemyMicroservice.Shared.Extensions;
