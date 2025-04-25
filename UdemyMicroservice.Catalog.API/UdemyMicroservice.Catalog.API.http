@@ -30,6 +30,19 @@ Accept : application/json
   "imageUrl": "https://example.com/image.jpg"
 }
 ###
+PUT {{baseAddress}}/api/courses
+Content-Type : application/json
+Accept : application/json
+{
+  "Id": "{{courseId}}",
+  "name": "New Course 333",
+  "description": "This is a new course 333",
+  "categoryId": "{{categoryId}}",
+  "price": 999,
+  "imageUrl": "https://example.com/image2.jpg"
+}
+###
+
 
 GET {{baseAddress}}/api/courses
 Accept: application/json
