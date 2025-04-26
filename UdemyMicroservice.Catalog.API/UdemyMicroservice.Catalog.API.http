@@ -51,4 +51,7 @@ Accept: application/json
 GET {{baseAddress}}/api/courses/{{courseId}}
 Accept: application/json
 ###
-
+###
+  DELETE {{baseAddress}}/api/courses/{{courseId}}
+Accept: application/json
+###
