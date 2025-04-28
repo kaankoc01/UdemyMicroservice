@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
-using MongoDB.EntityFrameworkCore.Extensions;
+﻿using MongoDB.Driver;
 using System.Reflection;
 using UdemyMicroservice.Catalog.API.Features.Categories;
 using UdemyMicroservice.Catalog.API.Features.Courses;

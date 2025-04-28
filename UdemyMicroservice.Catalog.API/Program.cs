@@ -2,8 +2,6 @@ using UdemyMicroservice.Catalog.API;
 using UdemyMicroservice.Catalog.API.Features.Categories;
 using UdemyMicroservice.Catalog.API.Features.Courses;
 using UdemyMicroservice.Catalog.API.Options;
-using UdemyMicroservice.Catalog.API.Repositories;
-using UdemyMicroservice.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +13,18 @@ builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 
 
 var app = builder.Build();
+
+app.AddSeedDataExt().ContinueWith(x =>
+{
+    if (!x.IsFaulted)
+    {
+        Console.WriteLine("Seed data added successfully.");
+    }
+    else
+    {
+        Console.WriteLine(x.Exception?.Message);
+    }
+});
 
 app.AddCategoryGroupEndpointExt();
 app.AddCourseGroupEndpointExt();
