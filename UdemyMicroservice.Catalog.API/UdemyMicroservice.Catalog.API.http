@@ -1,9 +1,9 @@
 @baseAddress = http://localhost:5238
-@categoryId = 08dd8139-d165-593e-dc1b-a105a5fa0000
-@courseId = 08dd81d2-84d0-c538-dc1b-a105a5fa0000
+@categoryId = 08dd85f3-9621-c54e-dc1b-a105a5fa0000
+@courseId = 08dd85f3-9646-8dce-dc1b-a105a5fa0000
 @userId = a5fa0000-a105-dc1b-7add-08dd85f39646
 
-GET {{baseAddress}}/api/categories
+GET {{baseAddress}}/api/v1.0/categories
 Accept: application/json
 ###
 
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 ###
 
-GET {{baseAddress}}/api/categories/{{categoryId}}
+GET {{baseAddress}}/api/v1.2/categories/{{categoryId}}
 Accept: application/json
 ###
 
@@ -31,6 +31,7 @@ Accept : application/json
   "imageUrl": "https://example.com/image.jpg"
 }
 ###
+
 PUT {{baseAddress}}/api/courses
 Content-Type : application/json
 Accept : application/json
@@ -45,17 +46,18 @@ Accept : application/json
 ###
 
 
-GET {{baseAddress}}/api/courses
+GET {{baseAddress}}/api/v1/courses
 Accept: application/json
 ###
 
-GET {{baseAddress}}/api/courses/{{courseId}}
-Accept: application/json
-###
-DELETE {{baseAddress}}/api/courses/{{courseId}}
+GET {{baseAddress}}/api/v1/courses/{{courseId}}
 Accept: application/json
 ###
 
-GET {{baseAddress}}/api/courses/user/{{userId}}
+DELETE {{baseAddress}}/api/v1/courses/{{courseId}}
+Accept: application/json
+###
+
+GET {{baseAddress}}/api/v1/courses/user/{{userId}}
 Accept: application/json
 ###

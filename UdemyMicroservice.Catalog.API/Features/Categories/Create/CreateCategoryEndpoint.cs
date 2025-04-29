@@ -10,6 +10,7 @@ namespace UdemyMicroservice.Catalog.API.Features.Categories.Create
                 async (CreateCategoryCommand Command, IMediator mediator) => 
                 (await mediator.Send(Command)).ToGenericResult())
                 .WithName("CreateCategory")
+                .MapToApiVersion(1,0)
                 .Produces<Guid>(StatusCodes.Status201Created)
 
                 .AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();

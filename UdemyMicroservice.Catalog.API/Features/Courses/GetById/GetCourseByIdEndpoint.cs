@@ -29,6 +29,7 @@ namespace UdemyMicroservice.Catalog.API.Features.Courses.GetById
             group.MapGet("/{id:guid}",
                 async (IMediator mediator,Guid id) =>
                 (await mediator.Send(new GetCourseByIdQuery(id))).ToGenericResult())
+                .MapToApiVersion(1, 0)
                 .WithName("GetByIdCourse");
             return group;
         }
