@@ -4,16 +4,17 @@ using System.Text.Json;
 using UdemyMicroservice.Basket.API.Const;
 using UdemyMicroservice.Basket.API.Dto;
 using UdemyMicroservice.Shared;
+using UdemyMicroservice.Shared.Services;
 
 namespace UdemyMicroservice.Basket.API.Features.Baskets.AddBasketItem
 {
-    public class AddBasketItemCommandHandler(IDistributedCache distributedCache) : IRequestHandler<AddBasketItemCommand, ServiceResult>
+    public class AddBasketItemCommandHandler(IDistributedCache distributedCache,IIdentityService identityService) : IRequestHandler<AddBasketItemCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
         {
-            //Fast Fail
 
-            Guid userId = Guid.Parse("1cb07e8d-3bc7-4e6d-a483-20816cfc4e44");// change Userıd
+            Guid userId = identityService.GetUserId;
+
             var cacheKey = string.Format(BasketConst.BasketCacheKey, userId);
 
             var basketAsString = await distributedCache.GetStringAsync(cacheKey);
