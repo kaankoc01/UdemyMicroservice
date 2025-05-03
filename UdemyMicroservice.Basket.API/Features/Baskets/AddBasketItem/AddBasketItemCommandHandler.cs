@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 using UdemyMicroservice.Basket.API.Const;
+using UdemyMicroservice.Basket.API.Data;
 using UdemyMicroservice.Basket.API.Dto;
 using UdemyMicroservice.Shared;
 using UdemyMicroservice.Shared.Services;
@@ -19,28 +20,28 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.AddBasketItem
 
             var basketAsString = await distributedCache.GetStringAsync(cacheKey);
 
-            BasketDto? currentBasket;
-            var newBasketItem = new BasketItemDto(request.CourseId, request.CourseName, request.ImageUrl, request.CoursePrice, null);
+            Data.Basket? currentBasket;
+            var newBasketItem = new BasketItem(request.CourseId, request.CourseName, request.ImageUrl, request.CoursePrice, null);
 
             if (string.IsNullOrEmpty(basketAsString))
             {
-                currentBasket = new BasketDto(userId, [newBasketItem]);
+                currentBasket = new Data.Basket(userId, [newBasketItem]);
 
                 await CreateCacheAsync(currentBasket, cacheKey, cancellationToken);
 
                 return ServiceResult.SuccessAsNoContent();
             }
 
-            currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+            currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
 
-            var existingBasketItem = currentBasket!.BasketItems.FirstOrDefault(x => x.Id == request.CourseId);
+            var existingBasketItem = currentBasket!.Items.FirstOrDefault(x => x.Id == request.CourseId);
 
             if (existingBasketItem is not null)
             {
                 // business rule
-                currentBasket.BasketItems.Remove(existingBasketItem);
+                currentBasket.Items.Remove(existingBasketItem);
             }
-            currentBasket.BasketItems.Add(newBasketItem);
+            currentBasket.Items.Add(newBasketItem);
 
             await CreateCacheAsync(currentBasket, cacheKey, cancellationToken);
 
@@ -48,7 +49,7 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.AddBasketItem
 
         }
 
-        private async Task CreateCacheAsync(BasketDto basket, string cacheKey, CancellationToken cancellationToken)
+        private async Task CreateCacheAsync(Data.Basket basket, string cacheKey, CancellationToken cancellationToken)
         {
             var basketAsString = JsonSerializer.Serialize(basket);
 

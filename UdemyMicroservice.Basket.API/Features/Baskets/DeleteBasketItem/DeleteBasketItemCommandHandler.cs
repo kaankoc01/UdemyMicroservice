@@ -21,15 +21,15 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.DeleteBasketItem
                 return ServiceResult.Error("Basket Not Found", System.Net.HttpStatusCode.NotFound);
             }
 
-            var currentBasket = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+            var currentBasket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
 
-            var basketItemToDelete = currentBasket!.BasketItems.FirstOrDefault(x => x.Id == request.Id);
+            var basketItemToDelete = currentBasket!.Items.FirstOrDefault(x => x.Id == request.Id);
 
             if (basketItemToDelete is null)
             {
                 return ServiceResult.Error("Basket Item Not Found", System.Net.HttpStatusCode.NotFound);
             }
-            currentBasket.BasketItems.Remove(basketItemToDelete);
+            currentBasket.Items.Remove(basketItemToDelete);
 
             basketAsString = JsonSerializer.Serialize(currentBasket);
 

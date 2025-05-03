@@ -7,7 +7,7 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.GetBasket
     {
         public static RouteGroupBuilder GetBasketGroupItemEndpoint(this RouteGroupBuilder group)
         {
-            group.MapGet("/",
+            group.MapGet("/user",
                 async (IMediator mediator) =>
                     (await mediator.Send(new GetBasketQuery())).ToGenericResult())
                 .WithName("GetBasket")

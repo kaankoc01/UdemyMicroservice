@@ -1,4 +1,6 @@
 ﻿
+using UdemyMicroservice.Shared;
+
 namespace UdemyMicroservice.Catalog.API.Features.Courses.Create
 {
     public class CreateCourseCommandHandler(AppDbContext context, IMapper mapper) : IRequestHandler<CreateCourseCommand, ServiceResult<Guid>>
