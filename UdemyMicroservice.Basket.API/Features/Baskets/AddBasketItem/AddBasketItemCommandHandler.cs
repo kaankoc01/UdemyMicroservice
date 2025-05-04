@@ -3,7 +3,6 @@ using Microsoft.Extensions.Caching.Distributed;
 using System.Text.Json;
 using UdemyMicroservice.Basket.API.Const;
 using UdemyMicroservice.Basket.API.Data;
-using UdemyMicroservice.Basket.API.Dto;
 using UdemyMicroservice.Shared;
 using UdemyMicroservice.Shared.Services;
 
