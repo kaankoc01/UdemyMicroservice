@@ -11,25 +11,24 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.RemoveDiscountCoupon
 {
 	public record RemoveDiscountCouponCommand : IRequestByServiceResult;
 
-	public class RemoveDiscountCouponCommandHandler(IIdentityService identityService, IDistributedCache distributedCache) : IRequestHandler<RemoveDiscountCouponCommand, ServiceResult>
+	public class RemoveDiscountCouponCommandHandler(IIdentityService identityService,BasketService basketService) : IRequestHandler<RemoveDiscountCouponCommand, ServiceResult>
 	{
 		public async Task<ServiceResult> Handle(RemoveDiscountCouponCommand request, CancellationToken cancellationToken)
 		{
-			var cacheKey = string.Format(BasketConst.BasketCacheKey, identityService.GetUserId);
+		
+			var basketAsJson = await basketService.GetBasketFromCache(cancellationToken);
 
-			var basketAsString = await distributedCache.GetStringAsync(cacheKey);
-
-			if (string.IsNullOrEmpty(basketAsString))
+			if (string.IsNullOrEmpty(basketAsJson))
 			{
 				return ServiceResult.Error("Basket not found", System.Net.HttpStatusCode.NotFound);
 			}
-			var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
+			var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsJson);
 
 			basket!.ClearDiscount();
 
-			basketAsString = JsonSerializer.Serialize(basket);
+			basketAsJson = JsonSerializer.Serialize(basket);
 
-			await distributedCache.SetStringAsync(cacheKey, basketAsString);
+			await basketService.CreateBasketCacheAsync(basket, cancellationToken);
 
 			return ServiceResult.SuccessAsNoContent();
 		}
@@ -37,7 +36,7 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.RemoveDiscountCoupon
 
 	public static class RemoveDiscountCouponEndpoint
 	{
-		public static RouteGroupBuilder GetBasketGroupItemEndpoint(this RouteGroupBuilder group)
+		public static RouteGroupBuilder RemoveDiscountCouponGroupItemEndpoint(this RouteGroupBuilder group)
 		{
 			group.MapDelete("/remove-discount-coupon",
 				async (IMediator mediator) =>

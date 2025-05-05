@@ -7,13 +7,13 @@ using UdemyMicroservice.Shared.Services;
 
 namespace UdemyMicroservice.Basket.API.Features.Baskets.ApplyDiscountCoupon
 {
-    public class ApplyDiscountCouponCommandHandler(IIdentityService identityService, IDistributedCache distributedCache) : IRequestHandler<ApplyDiscountCouponCommand, ServiceResult>
+    public class ApplyDiscountCouponCommandHandler(IIdentityService identityService,BasketService basketService) : IRequestHandler<ApplyDiscountCouponCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(ApplyDiscountCouponCommand request, CancellationToken cancellationToken)
         {
-			var cacheKey = string.Format(BasketConst.BasketCacheKey, identityService.GetUserId);
+			
 
-			var basketAsJson = await distributedCache.GetStringAsync(cacheKey);
+			var basketAsJson = await basketService.GetBasketFromCache(cancellationToken);
 
 			if (string.IsNullOrEmpty(basketAsJson))
 			{
@@ -30,7 +30,7 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.ApplyDiscountCoupon
 
 			basketAsJson = JsonSerializer.Serialize(basket);
 
-			await distributedCache.SetStringAsync(cacheKey, basketAsJson);
+			await basketService.CreateBasketCacheAsync(basket,cancellationToken);
 
 			return ServiceResult.SuccessAsNoContent();
 		}
