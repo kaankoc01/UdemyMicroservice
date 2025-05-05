@@ -30,3 +30,7 @@ Content-Type : application/json
 	"discountRate": 0.2
 }
 ###
+
+GET {{baseAddress}}/api/v1/baskets/remove-discount-coupon
+Accept : application/json
+###

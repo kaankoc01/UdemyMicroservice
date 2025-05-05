@@ -15,7 +15,8 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets
                 .AddBasketItemGroupItemEndpoint()
                 .DeleteBasketItemGroupItemEndpoint()
                 .GetBasketGroupItemEndpoint()
-                .ApplyDiscountCouponGroupItemEndpoint();
+                .ApplyDiscountCouponGroupItemEndpoint()
+                .GetBasketGroupItemEndpoint();
         }
     }
 }
