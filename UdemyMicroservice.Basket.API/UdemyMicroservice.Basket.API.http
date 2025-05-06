@@ -10,8 +10,8 @@ Accept : application/json
 Content-Type : application/json
 {
   "courseId": "{{courseId}}",
-  "courseName": "aaa",
-  "coursePrice": 30
+  "courseName": "ccc",
+  "coursePrice": 25
 }
 
 ###
