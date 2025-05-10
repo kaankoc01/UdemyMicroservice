@@ -1,3 +1,5 @@
+using UdemyMicroservice.Catalog.API.Features.Courses;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -18,5 +20,6 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 	app.MapOpenApi();
 }
+app.AddDiscountGroupEndpointExt(app.AddVersionSetExt());
 
 app.Run();
