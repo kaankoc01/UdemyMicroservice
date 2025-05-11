@@ -9,15 +9,14 @@ namespace UdemyMicroservice.Catalog.API.Features.Courses.Create
         public static RouteGroupBuilder CreateDiscountGroupItemEndpoint(this RouteGroupBuilder group)
         {
             group.MapPost("/",
-                async (CreateDiscountCommand Command, IMediator mediator) =>
-                (await mediator.Send(Command)).ToGenericResult())
+                async (CreateDiscountCommand command, IMediator mediator) =>
+                (await mediator.Send(command)).ToGenericResult())
                 .WithName("CreateDiscount")
                 .MapToApiVersion(1,0)
                 .Produces<Guid>(StatusCodes.Status201Created)
-                .Produces(StatusCodes.Status404NotFound)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
-                .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-                .AddEndpointFilter<ValidationFilter<CreateDiscountCommand>>();
+                .Produces<ProblemDetails>(StatusCodes.Status404NotFound)
+                .AddEndpointFilter<ValidationFilter<CreateDiscountCommandValidator>>();
                 
             return group;
         }

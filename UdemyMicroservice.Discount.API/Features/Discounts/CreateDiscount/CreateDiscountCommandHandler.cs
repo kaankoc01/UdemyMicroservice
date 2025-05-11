@@ -1,23 +1,31 @@
-﻿using UdemyMicroservice.Shared.Services;
-
-namespace UdemyMicroservice.Discount.API.Features.Discounts.CreateDiscount
+﻿namespace UdemyMicroservice.Discount.API.Features.Discounts.CreateDiscount
 {
-	public class CreateDiscountCommandHandler(AppDbContext context, IIdentityService identityService) : IRequestHandler<CreateDiscountCommand, ServiceResult>
+	public class CreateDiscountCommandHandler(AppDbContext context) : IRequestHandler<CreateDiscountCommand, ServiceResult>
 	{
-
 		public async Task<ServiceResult> Handle(CreateDiscountCommand request, CancellationToken cancellationToken)
 		{
+			var hasCodeForUser = await context.DiscountEntities.AnyAsync(x => x.UserId.ToString() == request.UserId.ToString() && x.Code == request.Code, cancellationToken: cancellationToken);
+
+			if (hasCodeForUser)
+			{
+				return ServiceResult.Error("Discount code already exists for this user","Discount code already exists for this user", HttpStatusCode.BadRequest);
+			}
+
+
 			var discount = new Features.Discounts.DiscountEntity()
 			{
 				Id = NewId.NextSequentialGuid(),
 				Code = request.Code,
-				Rate = request.Rate,
 				Created = DateTime.Now,
-				UserId = identityService.GetUserId,
-				Expired = request.Expired
+				Rate = request.Rate,
+				Expired = request.Expired,
+				UserId = request.UserId
 			};
-			context.DiscountEntities.AddAsync(discount, cancellationToken);
+
+			await context.DiscountEntities.AddAsync(discount, cancellationToken);
+
 			await context.SaveChangesAsync(cancellationToken);
+
 			return ServiceResult.SuccessAsNoContent();
 		}
 	}
