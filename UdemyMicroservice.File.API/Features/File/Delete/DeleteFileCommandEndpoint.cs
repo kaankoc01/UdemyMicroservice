@@ -9,14 +9,14 @@ namespace UdemyMicroservice.File.API.Features.File.Delete
 	{
 		public static RouteGroupBuilder DeleteFileGroupItemEndpoint(this RouteGroupBuilder group)
 		{
-			group.MapPost("/{fileName}",
-				async (string fileName, IMediator mediator) =>
-				(await mediator.Send(new DeleteFileCommand(fileName))).ToGenericResult())
-				.WithName("delete")
-				.MapToApiVersion(1, 0)
-				.Produces<Guid>(StatusCodes.Status201Created)
-				.Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
-				.Produces<ProblemDetails>(StatusCodes.Status404NotFound);
+			group.MapDelete("",
+				   async ([FromBody] DeleteFileCommand deleteFileCommand, IMediator mediator) =>
+				   (await mediator.Send(deleteFileCommand)).ToGenericResult())
+			   .WithName("delete")
+			   .MapToApiVersion(1, 0)
+			   .Produces<Guid>(StatusCodes.Status201Created)
+			   .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
+			   .Produces<ProblemDetails>(StatusCodes.Status500InternalServerError);
 
 			return group;
 		}

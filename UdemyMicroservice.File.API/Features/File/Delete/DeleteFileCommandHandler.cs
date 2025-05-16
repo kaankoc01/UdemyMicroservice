@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.Extensions.FileProviders;
-using System.Net.WebSockets;
 using UdemyMicroservice.Shared;
 
 namespace UdemyMicroservice.File.API.Features.File.Delete
