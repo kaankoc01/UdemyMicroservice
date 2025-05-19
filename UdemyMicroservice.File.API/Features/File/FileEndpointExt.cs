@@ -1,8 +1,8 @@
 ﻿using Asp.Versioning.Builder;
-using UdemyMicroservice.Catalog.API.Features.Courses.Create;
+using UdemyMicroservice.File.API.Features.Courses.Create;
 using UdemyMicroservice.File.API.Features.File.Delete;
 
-namespace UdemyMicroservice.Catalog.API.Features.Courses
+namespace UdemyMicroservice.File.API.Features.Courses
 {
     public static class FileEndpointExt
     {
@@ -11,8 +11,6 @@ namespace UdemyMicroservice.Catalog.API.Features.Courses
             app.MapGroup("api/v{version:apiVersion}/files").WithTags("files").WithApiVersionSet(apiVersionSet)
                 .UploadFileGroupItemEndpoint()
                 .DeleteFileGroupItemEndpoint();
- 
-
         }
     }
 }

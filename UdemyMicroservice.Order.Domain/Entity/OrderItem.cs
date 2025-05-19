@@ -11,11 +11,11 @@
 		{
 			if (string.IsNullOrEmpty(ProductName))
 			{
-				throw new ArgumentNullException("ProductName cannot be empty.");
+				throw new ArgumentNullException(nameof(productName),"ProductName cannot be empty.");
 			}
 			if (UnitPrice <= 0 )
 			{
-				throw new ArgumentNullException("UnitPrice cannot be less than or equal to zero.");
+				throw new ArgumentNullException(nameof(unitPrice),"UnitPrice cannot be less than or equal to zero.");
 			}
 			ProductId = productId;
 			ProductName = productName;

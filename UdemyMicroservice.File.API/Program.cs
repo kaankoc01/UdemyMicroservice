@@ -1,5 +1,6 @@
 using Microsoft.Extensions.FileProviders;
 using UdemyMicroservice.File.API;
+using UdemyMicroservice.File.API.Features.Courses;
 using UdemyMicroservice.Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,9 +17,8 @@ builder.Services.AddVersioningExt();
 
 
 var app = builder.Build();
-
+app.AddFileGroupEndpointExt(app.AddVersionSetExt());
 app.UseStaticFiles();
-
 
 if (app.Environment.IsDevelopment())
 {
@@ -26,8 +26,6 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 	app.MapOpenApi();
 }
-
-
 
 app.Run();
 

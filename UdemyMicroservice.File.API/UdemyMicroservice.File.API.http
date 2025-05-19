@@ -14,6 +14,6 @@ Hello World
 DELETE {{baseAddress}}/api/v1/files
 Content-Type: application/json
 {
-  "fileName": "83fb0188-a237-497e-b32e-a2bfb043a015.txt"
+"fileName": "bee5d70c-e889-464e-9a98-1d977bf08af7.txt"
 }
 ###

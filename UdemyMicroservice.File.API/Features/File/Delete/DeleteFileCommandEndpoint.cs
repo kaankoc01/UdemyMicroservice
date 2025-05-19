@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using UdemyMicroservice.File.API.Features.File.Upload;
 using UdemyMicroservice.Shared.Extensions;
 
 namespace UdemyMicroservice.File.API.Features.File.Delete

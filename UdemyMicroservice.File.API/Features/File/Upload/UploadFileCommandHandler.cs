@@ -15,7 +15,7 @@ namespace UdemyMicroservice.File.API.Features.File.Upload
 			}
 			var newFileName = $"{Guid.NewGuid()}{Path.GetExtension(request.file.FileName)}";// .jpg
 
-			var uploadPath = Path.Combine(fileProvider.GetFileInfo("uploads").PhysicalPath!,newFileName);
+			var uploadPath = Path.Combine(fileProvider.GetFileInfo("files").PhysicalPath!,newFileName);
 
 			await using var stream = new FileStream(uploadPath, FileMode.Create);
 
