@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UdemyMicroservice.Shared\UdemyMicroservice.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
