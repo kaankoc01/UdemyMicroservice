@@ -20,7 +20,7 @@ namespace UdemyMicroservice.Order.Domain.Entity
 
 		public float? DiscountRate { get; set; }
 
-		public Guid PaymentId { get; set; }
+		public Guid? PaymentId { get; set; }
 
 		public List<OrderItem> OrderItems { get; set; } = new();
 
