@@ -8,7 +8,7 @@ namespace UdemyMicroservice.Order.Persistence
 		public DbSet<Domain.Entity.Order> Orders { get; set; } = null!;
 		public DbSet<OrderItem> OrderItems { get; set; } = null!;
 		public DbSet<Address> Addresses { get; set; } = null!;
-
+		
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(PersistenceAssembly).Assembly);
