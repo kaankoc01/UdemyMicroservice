@@ -16,9 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IGenericRepository<,>),typeof(GenericRepository<,>));
 
-
 var app = builder.Build();
-
 
 if (app.Environment.IsDevelopment())
 {

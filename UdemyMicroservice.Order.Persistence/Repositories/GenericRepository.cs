@@ -24,7 +24,6 @@ namespace UdemyMicroservice.Order.Persistence.Repositories
 		{
 			_dbset.Remove(entity);
 		}
-
 		public Task<List<TEntity>> GetAllAsync()
 		{
 			return _dbset.ToListAsync();
