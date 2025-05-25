@@ -111,7 +111,12 @@ namespace UdemyMicroservice.Shared
                 }
             };
         }
-    }
+
+		public object ToGenericResult()
+		{
+			throw new NotImplementedException();
+		}
+	}
 
 
     public class ServiceResult<T> : ServiceResult
