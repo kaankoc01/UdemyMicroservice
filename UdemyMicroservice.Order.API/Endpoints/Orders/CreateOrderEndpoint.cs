@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using UdemyMicroservice.Order.Application.Features.Orders.Create;
+using UdemyMicroservice.Shared.Filters;
 
 namespace UdemyMicroservice.Order.API.Endpoints.Orders
 {
@@ -16,8 +17,8 @@ namespace UdemyMicroservice.Order.API.Endpoints.Orders
 				.Produces<Guid>(StatusCodes.Status201Created)
 				.Produces(StatusCodes.Status404NotFound)
 				.Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
-				.Produces<ProblemDetails>(StatusCodes.Status500InternalServerError);
-			//	.AddEndpointFilter<ValidationFilter<CreateOrderCommand>>()
+				.Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
+				.AddEndpointFilter<ValidationFilter<CreateOrderCommandValidator>>();
 
 			return group;
 		}
