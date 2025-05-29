@@ -7,6 +7,6 @@ using UdemyMicroservice.Order.Application.Features.Orders.Create;
 
 namespace UdemyMicroservice.Order.Application.Features.Orders.GetOrders
 {
-    public record GetOrdersResponse(DateTime OrderDate,decimal TotalPrice, List<OrderItemDto> Items);
+    public record GetOrdersResponse(DateTime Created,decimal TotalPrice, List<OrderItemDto> Items);
 
 }
