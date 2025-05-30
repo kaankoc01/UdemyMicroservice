@@ -1,6 +1,6 @@
-@UdemyMicroservice.Order.API_HostAddress = http://localhost:5259
+@baseAddress = http://localhost:5259
 
-GET {{UdemyMicroservice.Order.API_HostAddress}}/weatherforecast/
+GET {{baseAddress}}/weatherforecast/
 Accept: application/json
 
 ###
