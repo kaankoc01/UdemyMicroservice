@@ -27,7 +27,7 @@ namespace UdemyMicroservice.Order.Application.Features.Orders.Create
 			};
 
 
-			var order = Domain.Entity.Order.CreateUnPaidOrder(identityService.GetUserId, request.discountRate, newAddress.Id);
+			var order = Domain.Entity.Order.CreateUnPaidOrder(identityService.GetUserId, request.DiscountRate, newAddress.Id);
 
 			foreach (var orderItem in request.Items)
 			{

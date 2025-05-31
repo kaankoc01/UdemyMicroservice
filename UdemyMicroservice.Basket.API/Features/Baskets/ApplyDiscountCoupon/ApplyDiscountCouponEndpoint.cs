@@ -14,7 +14,7 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.ApplyDiscountCoupon
 				(await mediator.Send(Command)).ToGenericResult())
 				.WithName("ApplyDiscountCoupon")
 				.MapToApiVersion(1, 0)
-				.AddEndpointFilter<ValidationFilter<ApplyDiscountCouponCommandValidator>>();
+				.AddEndpointFilter<ValidationFilter<ApplyDiscountCouponCommand>>();
 
 			return group;
 		}

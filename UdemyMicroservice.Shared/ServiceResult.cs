@@ -112,10 +112,7 @@ namespace UdemyMicroservice.Shared
             };
         }
 
-		public object ToGenericResult()
-		{
-			throw new NotImplementedException();
-		}
+	
 	}
 
 

@@ -16,7 +16,7 @@ namespace UdemyMicroservice.Catalog.API.Features.Courses.Create
                 .Produces<Guid>(StatusCodes.Status201Created)
                 .Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
                 .Produces<ProblemDetails>(StatusCodes.Status404NotFound)
-                .AddEndpointFilter<ValidationFilter<CreateDiscountCommandValidator>>();
+                .AddEndpointFilter<ValidationFilter<CreateDiscountCommand>>();
                 
             return group;
         }

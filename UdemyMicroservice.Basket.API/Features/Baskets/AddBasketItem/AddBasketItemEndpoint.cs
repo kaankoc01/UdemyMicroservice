@@ -13,7 +13,7 @@ namespace UdemyMicroservice.Basket.API.Features.Baskets.AddBasketItem
                 (await mediator.Send(Command)).ToGenericResult())
                 .WithName("AddBasketItem")
                 .MapToApiVersion(1, 0)
-                .AddEndpointFilter<ValidationFilter<AddBasketItemCommandValidator>>();
+                .AddEndpointFilter<ValidationFilter<AddBasketItemCommand>>();
 
             return group;
         }

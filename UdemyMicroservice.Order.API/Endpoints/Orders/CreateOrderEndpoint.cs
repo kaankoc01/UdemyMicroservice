@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UdemyMicroservice.Order.Application.Features.Orders.Create;
 using UdemyMicroservice.Shared.Filters;
+using UdemyMicroservice.Shared.Extensions;
 
 namespace UdemyMicroservice.Order.API.Endpoints.Orders
 {
@@ -18,7 +19,7 @@ namespace UdemyMicroservice.Order.API.Endpoints.Orders
 				.Produces(StatusCodes.Status404NotFound)
 				.Produces<ProblemDetails>(StatusCodes.Status400BadRequest)
 				.Produces<ProblemDetails>(StatusCodes.Status500InternalServerError)
-				.AddEndpointFilter<ValidationFilter<CreateOrderCommandValidator>>();
+				.AddEndpointFilter<ValidationFilter<CreateOrderCommand>>();
 
 			return group;
 		}

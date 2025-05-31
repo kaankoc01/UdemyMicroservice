@@ -7,7 +7,7 @@ using UdemyMicroservice.Shared.Services;
 
 namespace UdemyMicroservice.Order.Application.Features.Orders.GetOrders
 {
-	public class GetOrdersQueryHandler(IIdentityService identityService,IOrderRepository orderRepository,IMapper mapper): IRequestHandler<GetOrdersQuery, ServiceResult<List<GetOrdersResponse>>
+	public class GetOrdersQueryHandler(IIdentityService identityService,IOrderRepository orderRepository,IMapper mapper): IRequestHandler<GetOrdersQuery, ServiceResult<List<GetOrdersResponse>>>
 	{
 		public async Task<ServiceResult<List<GetOrdersResponse>>> Handle(GetOrdersQuery request, CancellationToken cancellationToken)
 		{
